@@ -210,7 +210,7 @@ void Game::ComposeFrame()
 		pallet2Y = 33;
 	}
 	//Ball
-	drawBall(ballX, ballY, r, g, b);
+	drawBall(ballX, ballY, 255, 0, 255);
 	//Palett1
 	drawPallet(pallet1X, pallet1Y, r, g, b);
 	//Palett2
