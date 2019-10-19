@@ -29,8 +29,8 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	play1(100,300,5,100,Colors::Cyan,1),
-	play2(700,300,5,100,Colors::Magenta,2)
+	play1(100, 300, 10, 100, Colors::Cyan, 1),
+	play2(700, 300, 10, 100, Colors::Magenta, 2)
 {
 }
 
@@ -88,8 +88,8 @@ void Game::UpdateModel()
 		}
 	}
 	//Player Movement
-	play1.movePlayer(wnd);
-	play2.movePlayer(wnd);
+	play1.movePlayer(wnd, gfx);
+	play2.movePlayer(wnd, gfx);
 	//Ball Auto-move
 	ballX += ballVX;
 	ballY += ballVY;
@@ -170,28 +170,6 @@ void Game::ComposeFrame()
 		ballVY = -ballVY;
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
-	//Screen Limit(Palett1)
-	//Down
-	if (pallet1Y + 33 >= gfx.ScreenHeight)
-	{
-		pallet1Y = gfx.ScreenHeight - 33;
-	}
-	//Up
-	if (pallet1Y - 33 <= 0)
-	{
-		pallet1Y = 33;
-	}
-	//Screen Limit(Palett2)
-	//Down
-	if (pallet2Y + 33 >= gfx.ScreenHeight)
-	{
-		pallet2Y = gfx.ScreenHeight - 33;
-	}
-	//Up
-	if (pallet2Y - 33 <= 0)
-	{
-		pallet2Y = 33;
-	}
 	//Ball
 	drawBall(ballX, ballY, 255, 0, 255);
 	play1.drawPlayer(gfx);
@@ -210,9 +188,7 @@ void Game::drawBall(int x, int y, int r, int g, int b)
 	drawPixel5(x, y, r, g, b);
 }
 
-
-
-void Game::drawWinner(int x, int y)	
+void Game::drawWinner(int x, int y)
 {
 	gfx.PutPixel(12 + x, 17 + y, 255, 204, 0);
 	gfx.PutPixel(115 + x, 17 + y, 255, 204, 0);
@@ -5464,9 +5440,8 @@ void Game::drawPixel5(int x, int y, int r, int g, int b)
 	}
 	//Fill
 	int a = -5;
-	while (a<6)
+	while (a < 6)
 	{
-		
 		for (int i = 5; i > -6; i--)
 		{
 			gfx.PutPixel(x - i, y - a, r, g, b);

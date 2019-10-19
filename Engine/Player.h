@@ -7,7 +7,7 @@ class Player
 public:
 	Player(int x, int y, int width, int height, Color c, int player1or2);
 	void drawPlayer(Graphics& gfx);
-	void movePlayer(MainWindow& wnd);
+	void movePlayer(MainWindow& wnd, Graphics& gfx);
 		
 private:
 	int x;

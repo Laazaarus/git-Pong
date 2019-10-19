@@ -22,9 +22,21 @@ void Player::drawPlayer(Graphics& gfx)
 	}
 }
 
-void Player::movePlayer(MainWindow& wnd)
+void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
 {
-	if (player1or2 == 1)
+	//Screen Limit
+	//Down
+	if (y + height + 10 >= gfx.ScreenHeight)
+	{
+		y = gfx.ScreenHeight - height - 10;
+	}
+	//Up
+	if (y - 10 <= 0)
+	{
+		y = 10;
+	}
+
+	if (player1or2 == 2)
 	{
 		//UP
 		if (wnd.kbd.KeyIsPressed(VK_UP))
