@@ -29,9 +29,9 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	play1(100, 250, 10, 100, Colors::Cyan, 1),
-	play2(700, 250, 10, 100, Colors::Magenta, 2),
-	bll(400-7, 200, 15, Colors::White)
+	play1(100, 250, 10, 50, Colors::Cyan, 1),
+	play2(700, 250, 10, 50, Colors::Magenta, 2),
+	bll(400-5, 200, 10, Colors::White)
 {
 }
 

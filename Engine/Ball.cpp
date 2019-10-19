@@ -52,7 +52,6 @@ void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 			bottom_box0 >= top_box2))
 	{
 		vx = -vx;
-		//vy = -vy;
 	}
 }
 
@@ -108,13 +107,13 @@ void Ball::startBall()
 		isStarted = true;
 		if (whoStarts==0)
 		{
-			vx = -4;
-			vy = 4;
+			vx = -6;
+			vy = 6;
 		}
 		else if(whoStarts == 1)
 		{
-			vx = 4;
-			vy = 4;
+			vx = 6;
+			vy = 6;
 		}
 	}
 }
