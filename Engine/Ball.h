@@ -13,6 +13,7 @@ public:
 	void drawBall(Graphics& gfx);
 	void collisionBall(Player& play1, Player& play2, Graphics& gfx);
 	void ballScript(Graphics& gfx, Board& brd);
+	void ballLost();
 	void startBall();
 
 private:

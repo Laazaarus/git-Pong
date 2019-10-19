@@ -47,15 +47,14 @@ void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 		bottom_box0 >= top_box1)
 		||
 		(left_box0 <= right_box2 &&
-		right_box0 >= left_box2 &&
-		top_box0 <= bottom_box2 &&
-		bottom_box0 >= top_box2))
+			right_box0 >= left_box2 &&
+			top_box0 <= bottom_box2 &&
+			bottom_box0 >= top_box2))
 	{
 		vx = -vx;
 		//vy = -vy;
 	}
 }
-
 
 void Ball::ballScript(Graphics& gfx, Board& brd)
 {
@@ -77,17 +76,26 @@ void Ball::ballScript(Graphics& gfx, Board& brd)
 	if (x + 5 + dim >= gfx.ScreenWidth)
 	{
 		x = gfx.ScreenWidth - 6 - dim;
-		vx = -vx;
+		ballLost();
 	}
 	//Left Wall
 	if (x - 5 <= 0)
 	{
 		x = 6;
-		vx = -vx;
+		ballLost();
 	}
 	//Ball movement
 	x += vx;
 	y += vy;
+}
+
+void Ball::ballLost()
+{
+	x = 393;
+	y = 200;
+	vx = 0;
+	vy = 0;
+	isStarted = false;
 }
 
 void Ball::startBall()
@@ -98,12 +106,12 @@ void Ball::startBall()
 	else
 	{
 		isStarted = true;
-		if (whoStarts == 0)
+		if (whoStarts==0)
 		{
 			vx = -4;
 			vy = 4;
 		}
-		else
+		else if(whoStarts == 1)
 		{
 			vx = 4;
 			vy = 4;
