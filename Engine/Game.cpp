@@ -29,8 +29,8 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	play1(100, 300, 10, 100, Colors::Cyan, 1),
-	play2(700, 300, 10, 100, Colors::Magenta, 2),
+	play1(100, 250, 10, 100, Colors::Cyan, 1),
+	play2(700, 250, 10, 100, Colors::Magenta, 2),
 	bll(400-7, 200, 15, Colors::White)
 {
 }
@@ -45,74 +45,20 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	//Random Generated Numbers
-	srand(time(NULL));
-	random = rand() % 2 + 1;
 	//Start a ball
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
-		if (inhibit)
-		{
-		}
-		else
-		{
-			PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-
-			if (random == 1)
-			{
-				ballVX -= 4;
-				ballVY += 4;
-				inhibit = true;
-
-				if (score1 == 10 || score2 == 10)
-				{
-					score1 = 0;
-					score2 = 0;
-					pallet1Y = 300;
-					pallet2Y = 300;
-				}
-			}
-			else
-			{
-				ballVX += 4;
-				ballVY += 4;
-				inhibit = true;
-
-				if (score1 == 10 || score2 == 10)
-				{
-					score1 = 0;
-					score2 = 0;
-					pallet1Y = 300;
-					pallet2Y = 300;
-				}
-			}
-		}
+		bll.startBall();
 	}
-	//Player Movement
+	//Player & BallMovement
 	play1.movePlayer(wnd, gfx);
 	play2.movePlayer(wnd, gfx);
+	bll.ballScript(gfx, brd);
 	//Ball Auto-move
 	ballX += ballVX;
 	ballY += ballVY;
-	//Collision Test (Ball+Palett)
-	collisionPalett =
-		collisionTestPalett(ballX, ballY, pallet1X, pallet1Y) ||
-		collisionTestPalett(ballX, ballY, pallet2X, pallet2Y);
-
-	if (collisionPalett)
-	{
-		if (ballY > 300)
-		{
-			ballVX = -ballVX;
-			ballVY = -ballVY;
-		}
-		else
-		{
-			ballVX = -ballVX;
-		}
-
-		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-	}
+	
+		//PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	//Colision wall Up/Down
 	if (collisionWall)
 	{

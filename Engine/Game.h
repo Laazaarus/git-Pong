@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Player.h"
 #include "Ball.h"
+#include "Board.h"
 
 class Game
 {
@@ -55,6 +56,7 @@ private:
 	/*  User Variables              */
 	Player play1,play2;
 	Ball bll;
+	Board brd;
 	int ballX = 400;
 	int ballY = 200;
 	int ballVX = 0;
@@ -71,6 +73,5 @@ private:
 	bool collisionPalett = false;
 	int score1 = 0;
 	int score2 = 0;
-	int random = 0;
 	/********************************/
 };
