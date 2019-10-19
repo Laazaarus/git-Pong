@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Player.h"
 
 class Game
 {
@@ -51,6 +52,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Player play1,play2;
 	int ballX = 400;
 	int ballY = 200;
 	int ballVX = 0;

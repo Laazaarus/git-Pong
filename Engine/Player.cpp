@@ -6,11 +6,12 @@ Player::Player(int x, int y, int width, int height, Color c, int player1or2)
 	y(y),
 	c(c),
 	width(width),
-	height(height)
+	height(height),
+	player1or2(player1or2)
 {
 }
 
-void Player::drawPlayer(Graphics& gfx, int x, int y, Color c)
+void Player::drawPlayer(Graphics& gfx)
 {
 	for (int int_y = y; int_y < y + height; ++int_y)
 	{
@@ -21,7 +22,7 @@ void Player::drawPlayer(Graphics& gfx, int x, int y, Color c)
 	}
 }
 
-void Player::movePlayer(MainWindow& wnd, int player1or2)
+void Player::movePlayer(MainWindow& wnd)
 {
 	if (player1or2 == 1)
 	{

@@ -28,7 +28,9 @@
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
-	gfx(wnd)
+	gfx(wnd),
+	play1(100,300,5,100,Colors::Cyan,1),
+	play2(700,300,5,100,Colors::Magenta,2)
 {
 }
 
@@ -85,28 +87,9 @@ void Game::UpdateModel()
 			}
 		}
 	}
-	//Moving Pallet2
-	//UP
-	if (wnd.kbd.KeyIsPressed(VK_UP))
-	{
-		pallet2Y -= 6;
-	}
-	//DOWN
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		pallet2Y += 6;
-	}
-	//Moving Pallet1
-	//UP
-	if (wnd.kbd.KeyIsPressed('W'))
-	{
-		pallet1Y -= 6;
-	}
-	//DOWN
-	if (wnd.kbd.KeyIsPressed('S'))
-	{
-		pallet1Y += 6;
-	}
+	//Player Movement
+	play1.movePlayer(wnd);
+	play2.movePlayer(wnd);
 	//Ball Auto-move
 	ballX += ballVX;
 	ballY += ballVY;
@@ -211,10 +194,8 @@ void Game::ComposeFrame()
 	}
 	//Ball
 	drawBall(ballX, ballY, 255, 0, 255);
-	//Palett1
-	drawPallet(pallet1X, pallet1Y, r, g, b);
-	//Palett2
-	drawPallet(pallet2X, pallet2Y, r, g, b);
+	play1.drawPlayer(gfx);
+	play2.drawPlayer(gfx);
 	//Center Line
 	for (int i = 0; i < 599; i++)
 	{
@@ -229,16 +210,7 @@ void Game::drawBall(int x, int y, int r, int g, int b)
 	drawPixel5(x, y, r, g, b);
 }
 
-void Game::drawPallet(int x, int y, int r, int g, int b)
-{
-	drawPixel5(x, y - 25, r, g, b);
-	drawPixel5(x, y - 20, r, g, b);
-	drawPixel5(x, y - 10, r, g, b);
-	drawPixel5(x, y, r, g, b);
-	drawPixel5(x, y + 10, r, g, b);
-	drawPixel5(x, y + 20, r, g, b);
-	drawPixel5(x, y + 25, r, g, b);
-}
+
 
 void Game::drawWinner(int x, int y)	
 {
