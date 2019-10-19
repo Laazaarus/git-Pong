@@ -4,6 +4,7 @@
 #include "GigaPixel.h"
 #include "Player.h"
 #include "Board.h"
+#include "MainWindow.h"
 #include <random>
 
 class Ball
@@ -14,7 +15,7 @@ public:
 	void collisionBall(Player& play1, Player& play2, Graphics& gfx);
 	void ballScript(Graphics& gfx, Board& brd);
 	void ballLost();
-	void startBall();
+	void startBall(MainWindow& wnd);
 
 private:
 

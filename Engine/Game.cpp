@@ -46,17 +46,13 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	//Start a ball
-	if (wnd.kbd.KeyIsPressed(VK_SPACE))
-	{
-		bll.startBall();
-	}
+	bll.startBall(wnd);
 	//Player & BallMovement
 	play1.movePlayer(wnd, gfx);
 	play2.movePlayer(wnd, gfx);
 	bll.ballScript(gfx, brd);
 	//Colision 
 	bll.collisionBall(play1, play2, gfx);
-	//Score System
 }
 
 void Game::ComposeFrame()

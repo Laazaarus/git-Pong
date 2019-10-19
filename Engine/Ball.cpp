@@ -102,24 +102,27 @@ void Ball::ballLost()
 	isStarted = false;
 }
 
-void Ball::startBall()
+void Ball::startBall(MainWindow& wnd)
 {
-	if (isStarted)
+	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
-	}
-	else
-	{
-		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		isStarted = true;
-		if (whoStarts==0)
+		if (isStarted)
 		{
-			vx = -6;
-			vy = 6;
 		}
-		else if(whoStarts == 1)
+		else
 		{
-			vx = 6;
-			vy = 6;
+			PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			isStarted = true;
+			if (whoStarts == 0)
+			{
+				vx = -6;
+				vy = 6;
+			}
+			else if (whoStarts == 1)
+			{
+				vx = 6;
+				vy = 6;
+			}
 		}
 	}
 }
