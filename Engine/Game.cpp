@@ -30,7 +30,8 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	play1(100, 300, 10, 100, Colors::Cyan, 1),
-	play2(700, 300, 10, 100, Colors::Magenta, 2)
+	play2(700, 300, 10, 100, Colors::Magenta, 2),
+	bll(400-7, 200, 15, Colors::White)
 {
 }
 
@@ -171,7 +172,7 @@ void Game::ComposeFrame()
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	}
 	//Ball
-	drawBall(ballX, ballY, 255, 0, 255);
+	bll.drawBall(gfx);
 	play1.drawPlayer(gfx);
 	play2.drawPlayer(gfx);
 	//Center Line

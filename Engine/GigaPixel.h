@@ -3,5 +3,7 @@
 
 class GigaPixel
 {
+public:
 
+	
 };
