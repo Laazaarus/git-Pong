@@ -61,15 +61,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	//Ball
+	//Drawings
+	brd.drawBoard(gfx,Colors::White);
 	bll.drawBall(gfx);
 	play1.drawPlayer(gfx);
 	play2.drawPlayer(gfx);
-	//Center Line
-	for (int i = 0; i < 599; i++)
-	{
-		i += 5;
-		gfx.PutPixel(400, i, r, g, b);
-	}
-	//
 }
