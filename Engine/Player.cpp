@@ -63,3 +63,25 @@ void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
 		}
 	}
 }
+
+int Player::getX()
+{
+	return x;
+}
+
+int Player::getY()
+{
+	return y;
+}
+
+int Player::getWidth()
+{
+	return width;
+}
+
+int Player::getHeight()
+{
+	return height;
+}
+
+

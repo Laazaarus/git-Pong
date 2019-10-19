@@ -54,16 +54,10 @@ void Game::UpdateModel()
 	play1.movePlayer(wnd, gfx);
 	play2.movePlayer(wnd, gfx);
 	bll.ballScript(gfx, brd);
-	//Ball Auto-move
-	ballX += ballVX;
-	ballY += ballVY;
 	
 		//PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-	//Colision wall Up/Down
-	if (collisionWall)
-	{
-		ballVY = -ballVY;
-	}
+	//Colision 
+	bll.collisionBall(play1, play2, gfx);
 	//Score System
 	//Score1
 	if (score2 == 10)

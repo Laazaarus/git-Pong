@@ -9,6 +9,11 @@ public:
 	void drawPlayer(Graphics& gfx);
 	void movePlayer(MainWindow& wnd, Graphics& gfx);
 		
+	int getX();
+	int getY();
+	int getWidth();
+	int getHeight();
+
 private:
 	int x;
 	int y;
