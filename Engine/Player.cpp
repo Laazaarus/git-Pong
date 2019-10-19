@@ -84,4 +84,9 @@ int Player::getHeight()
 	return height;
 }
 
+Color Player::getColor()
+{
+	return c;
+}
+
 

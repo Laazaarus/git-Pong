@@ -53,6 +53,14 @@ void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 	{
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		vx = -vx;
+		if (x > 400)
+		{
+			c = play2.getColor();
+		}
+		else
+		{
+			c = play1.getColor();
+		}
 	}
 }
 
@@ -95,7 +103,8 @@ void Ball::ballScript(Graphics& gfx, Board& brd)
 
 void Ball::ballLost()
 {
-	x = 393;
+	c = Colors::White;
+	x = 395;
 	y = 200;
 	vx = 0;
 	vy = 0;

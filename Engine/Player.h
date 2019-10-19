@@ -13,6 +13,7 @@ public:
 	int getY();
 	int getWidth();
 	int getHeight();
+	Color getColor();
 
 private:
 	int x;
