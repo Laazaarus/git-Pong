@@ -26,6 +26,7 @@
 #include "Player.h"
 #include "Ball.h"
 #include "Board.h"
+#include "GigaPixel.h"
 
 class Game
 {
@@ -57,6 +58,7 @@ private:
 	Player play1,play2;
 	Ball bll;
 	Board brd;
+	GigaPixel gpx;
 	int ballX = 400;
 	int ballY = 200;
 	int ballVX = 0;
