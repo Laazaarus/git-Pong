@@ -82,27 +82,36 @@ void Ball::ballScript(Graphics& gfx, Board& brd)
 		y = gfx.ScreenHeight - 6 - dim;
 		vy = -vy;
 	}
-	//Right Wall
+	//Right Wall (Player2)
 	if (x + 5 + dim >= gfx.ScreenWidth)
 	{
 		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		x = gfx.ScreenWidth - 6 - dim;
-		ballLost();
+		ballLost(brd);
 	}
-	//Left Wall
+	//Left Wall (Player1)
 	if (x - 5 <= 0)
 	{
 		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		x = 6;
-		ballLost();
+		ballLost(brd);
 	}
 	//Ball movement
 	x += vx;
 	y += vy;
 }
 
-void Ball::ballLost()
+void Ball::ballLost(Board& brd)
 {
+	if (x > 400)
+	{
+		brd.scoreUP(2);
+	}
+	else
+	{
+		brd.scoreUP(1);
+	}
+	
 	c = Colors::White;
 	x = 395;
 	y = 200;
@@ -124,14 +133,19 @@ void Ball::startBall(MainWindow& wnd)
 			isStarted = true;
 			if (whoStarts == 0)
 			{
-				vx = -6;
-				vy = 6;
+				vx = -ballSpeed;
+				vy = ballSpeed;
 			}
 			else if (whoStarts == 1)
 			{
-				vx = 6;
-				vy = 6;
+				vx = ballSpeed;
+				vy = ballSpeed;
 			}
 		}
 	}
+}
+
+void Ball::speedUp()
+{
+	ballSpeed += 1;
 }

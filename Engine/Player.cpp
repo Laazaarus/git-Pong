@@ -41,12 +41,12 @@ void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
 		//UP
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			y -= 8;
+			y -= playerSpeed;
 		}
 		//DOWN
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			y += 8;
+			y += playerSpeed;
 		}
 	}
 	else
@@ -54,14 +54,19 @@ void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
 		//UP
 		if (wnd.kbd.KeyIsPressed('W'))
 		{
-			y -= 8;
+			y -= playerSpeed;
 		}
 		//DOWN
 		if (wnd.kbd.KeyIsPressed('S'))
 		{
-			y += 8;
+			y += playerSpeed;
 		}
 	}
+}
+
+void Player::speedUp()
+{
+	playerSpeed += 1;
 }
 
 int Player::getX()

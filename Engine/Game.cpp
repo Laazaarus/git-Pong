@@ -58,7 +58,7 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	//Drawings
-	brd.drawBoard(gfx,Colors::White);
+	brd.drawBoard(gfx, bll, play1, play2, Colors::White);
 	bll.drawBall(gfx);
 	play1.drawPlayer(gfx);
 	play2.drawPlayer(gfx);
