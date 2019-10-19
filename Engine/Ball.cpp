@@ -51,6 +51,7 @@ void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 			top_box0 <= bottom_box2 &&
 			bottom_box0 >= top_box2))
 	{
+		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		vx = -vx;
 	}
 }
@@ -62,24 +63,28 @@ void Ball::ballScript(Graphics& gfx, Board& brd)
 	//Up Wall
 	if (y - 5 <= 0)
 	{
+		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		y = 6;
 		vy = -vy;
 	}
 	//Down Wall
 	if (y + 5 + dim >= gfx.ScreenHeight)
 	{
+		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		y = gfx.ScreenHeight - 6 - dim;
 		vy = -vy;
 	}
 	//Right Wall
 	if (x + 5 + dim >= gfx.ScreenWidth)
 	{
+		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		x = gfx.ScreenWidth - 6 - dim;
 		ballLost();
 	}
 	//Left Wall
 	if (x - 5 <= 0)
 	{
+		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		x = 6;
 		ballLost();
 	}
@@ -104,6 +109,7 @@ void Ball::startBall()
 	}
 	else
 	{
+		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		isStarted = true;
 		if (whoStarts==0)
 		{

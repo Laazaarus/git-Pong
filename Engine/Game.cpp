@@ -54,7 +54,6 @@ void Game::UpdateModel()
 	play1.movePlayer(wnd, gfx);
 	play2.movePlayer(wnd, gfx);
 	bll.ballScript(gfx, brd);
-		//PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	//Colision 
 	bll.collisionBall(play1, play2, gfx);
 	//Score System
