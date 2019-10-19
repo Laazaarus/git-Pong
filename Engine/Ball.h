@@ -14,9 +14,8 @@ public:
 	void drawBall(Graphics& gfx);
 	void collisionBall(Player& play1, Player& play2, Graphics& gfx);
 	void ballScript(Graphics& gfx, Board& brd);
-	void ballLost(Board& brd);
+	void ballLost();
 	void startBall(MainWindow& wnd);
-	void speedUp();
 
 private:
 
@@ -26,7 +25,6 @@ private:
 	int vy = 0;
 	int dim;
 	int whoStarts;
-	int ballSpeed = 6;
 	bool isStarted = false;
 	Color c;
 };
