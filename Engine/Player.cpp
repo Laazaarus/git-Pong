@@ -26,14 +26,14 @@ void Player::movePlayer(MainWindow& wnd, Graphics& gfx, float dt)
 {
 	//Screen Limit
 	//Down
-	if (y + height + 10 >= gfx.ScreenHeight)
+	if (y + height + 15 >= gfx.ScreenHeight)
 	{
-		y = gfx.ScreenHeight - height - 10;
+		y = gfx.ScreenHeight - height - 15;
 	}
 	//Up
-	if (y - 10 <= 0)
+	if (y - 15 <= 0)
 	{
-		y = 10;
+		y = 15;
 	}
 
 	//Moving

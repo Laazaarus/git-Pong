@@ -69,31 +69,31 @@ void Ball::ballScript(Graphics& gfx, Board& brd, float dt)
 	//Ball wall limits an behaviours
 	//
 	//Up Wall
-	if (y - 5 <= 0)
+	if (y - 15 <= 0)
 	{
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		y = 6;
+		y = 16;
 		vy = -vy;
 	}
 	//Down Wall
-	if (y + 5 + dim >= gfx.ScreenHeight)
+	if (y + 15 + dim >= gfx.ScreenHeight)
 	{
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		y = gfx.ScreenHeight - 6 - dim;
+		y = gfx.ScreenHeight - 16 - dim;
 		vy = -vy;
 	}
 	//Right Wall
-	if (x + 5 + dim >= gfx.ScreenWidth)
+	if (x + 15 + dim >= gfx.ScreenWidth)
 	{
 		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		x = gfx.ScreenWidth - 6 - dim;
+		x = gfx.ScreenWidth - 16 - dim;
 		ballLost();
 	}
 	//Left Wall
-	if (x - 5 <= 0)
+	if (x - 15 <= 0)
 	{
 		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		x = 6;
+		x = 16;
 		ballLost();
 	}
 	//Ball movement
