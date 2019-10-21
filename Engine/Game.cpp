@@ -25,14 +25,13 @@
 #include <windows.h>
 #include <mmsystem.h>
 
-
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
 	play1(100, 250, 10, 50, Colors::Cyan, 1),
 	play2(700, 250, 10, 50, Colors::Magenta, 2),
-	bll(400-5, 200, 10, Colors::White)
+	bll(400 - 5, 200, 10, Colors::White)
 {
 }
 
@@ -46,20 +45,23 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	//
+	float dt = time.checkTime();
+	//
 	//Start a ball
 	bll.startBall(wnd);
 	//Player & BallMovement
-	play1.movePlayer(wnd, gfx);
-	play2.movePlayer(wnd, gfx);
-	bll.ballScript(gfx, brd);
-	//Colision 
+	play1.movePlayer(wnd, gfx, dt);
+	play2.movePlayer(wnd, gfx, dt);
+	bll.ballScript(gfx, brd, dt);
+	//Colision
 	bll.collisionBall(play1, play2, gfx);
 }
 
 void Game::ComposeFrame()
 {
 	//Drawings
-	brd.drawBoard(gfx,Colors::White);
+	brd.drawBoard(gfx, Colors::White);
 	bll.drawBall(gfx);
 	play1.drawPlayer(gfx);
 	play2.drawPlayer(gfx);

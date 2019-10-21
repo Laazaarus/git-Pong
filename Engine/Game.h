@@ -27,7 +27,7 @@
 #include "Ball.h"
 #include "Board.h"
 #include "GigaPixel.h"
-#include <chrono>
+#include "Timer.h"
 
 class Game
 {
@@ -56,6 +56,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Timer time;
 	Player play1,play2;
 	Ball bll;
 	Board brd;

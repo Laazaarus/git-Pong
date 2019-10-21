@@ -64,7 +64,7 @@ void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 	}
 }
 
-void Ball::ballScript(Graphics& gfx, Board& brd)
+void Ball::ballScript(Graphics& gfx, Board& brd, float dt)
 {
 	//Ball wall limits an behaviours
 	//
@@ -97,8 +97,8 @@ void Ball::ballScript(Graphics& gfx, Board& brd)
 		ballLost();
 	}
 	//Ball movement
-	x += vx;
-	y += vy;
+	x += vx*dt;
+	y += vy*dt;
 }
 
 void Ball::ballLost()
@@ -124,13 +124,13 @@ void Ball::startBall(MainWindow& wnd)
 			isStarted = true;
 			if (whoStarts == 0)
 			{
-				vx = -6;
-				vy = 6;
+				vx = -velocity;
+				vy = velocity;
 			}
 			else if (whoStarts == 1)
 			{
-				vx = 6;
-				vy = 6;
+				vx = velocity;
+				vy = velocity;
 			}
 		}
 	}

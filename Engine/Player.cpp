@@ -22,7 +22,7 @@ void Player::drawPlayer(Graphics& gfx)
 	}
 }
 
-void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
+void Player::movePlayer(MainWindow& wnd, Graphics& gfx, float dt)
 {
 	//Screen Limit
 	//Down
@@ -36,17 +36,18 @@ void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
 		y = 10;
 	}
 
+	//Moving
 	if (player1or2 == 2)
 	{
 		//UP
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			y -= 8;
+			y -= velocity*dt;
 		}
 		//DOWN
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			y += 8;
+			y += velocity * dt;
 		}
 	}
 	else
@@ -54,12 +55,12 @@ void Player::movePlayer(MainWindow& wnd, Graphics& gfx)
 		//UP
 		if (wnd.kbd.KeyIsPressed('W'))
 		{
-			y -= 8;
+			y -= velocity * dt;
 		}
 		//DOWN
 		if (wnd.kbd.KeyIsPressed('S'))
 		{
-			y += 8;
+			y += velocity * dt;
 		}
 	}
 }
