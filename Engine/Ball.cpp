@@ -7,9 +7,7 @@ Ball::Ball(int x, int y, int dim, Color c)
 	c(c),
 	dim(dim)
 {
-	std::mt19937 rng;
-	std::uniform_int_distribution<int> start(0, 1);
-	whoStarts = start(rng);
+	
 }
 
 void Ball::drawBall(Graphics& gfx)
@@ -113,6 +111,13 @@ void Ball::ballLost()
 
 void Ball::startBall(MainWindow& wnd)
 {
+	//Randomization of who the heck actually starts (will be change to be used only on the first ball)
+	//Later the person who got a score will start :)
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::uniform_int_distribution<int> start (0,1);
+	int whoStarts = start(rng);
+
 	if (wnd.kbd.KeyIsPressed(VK_SPACE))
 	{
 		if (isStarted)

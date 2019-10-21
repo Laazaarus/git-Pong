@@ -18,7 +18,9 @@ public:
 	void startBall(MainWindow& wnd);
 
 private:
+	//
 
+	//
 	int x;
 	int y;
 	int vx = 0;
@@ -27,7 +29,6 @@ private:
 	int speed = 7;
 	int velocity = time * speed;
 	int dim;
-	int whoStarts;
 	bool isStarted = false;
 	Color c;
 };
