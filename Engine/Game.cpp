@@ -47,7 +47,7 @@ void Game::UpdateModel()
 {
 	if (!tit.isStarted)
 	{
-		tit.drawMenu(gfx, wnd);
+		//tit.drawMenu(gfx, wnd);
 		tit.startGame(wnd);
 	}
 	else
