@@ -45,24 +45,35 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	//
-	float dt = time.checkTime();
-	//
-	//Start a ball
-	bll.startBall(wnd);
-	//Player & BallMovement
-	play1.movePlayer(wnd, gfx, dt);
-	play2.movePlayer(wnd, gfx, dt);
-	bll.ballScript(gfx, brd, dt);
-	//Colision
-	bll.collisionBall(play1, play2, gfx);
+	if (!tit.isStarted)
+	{
+		tit.drawMenu(gfx, wnd);
+		tit.startGame(wnd);
+	}
+	else
+	{
+		//
+		float dt = time.checkTime();
+		//
+		//Start a ball
+		bll.startBall(wnd);
+		//Player & BallMovement
+		play1.movePlayer(wnd, gfx, dt);
+		play2.movePlayer(wnd, gfx, dt);
+		bll.ballScript(gfx, brd, dt);
+		//Colision
+		bll.collisionBall(play1, play2, gfx);
+	}
 }
 
 void Game::ComposeFrame()
 {
-	//Drawings
-	brd.drawBoard(gfx, Colors::White);
-	bll.drawBall(gfx);
-	play1.drawPlayer(gfx);
-	play2.drawPlayer(gfx);
+	if (tit.isStarted)
+	{
+		//Drawings
+		brd.drawBoard(gfx, Colors::White);
+		bll.drawBall(gfx);
+		play1.drawPlayer(gfx);
+		play2.drawPlayer(gfx);
+	}
 }

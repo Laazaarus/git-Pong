@@ -28,6 +28,7 @@
 #include "Board.h"
 #include "GigaPixel.h"
 #include "Timer.h"
+#include "Title.h"
 
 class Game
 {
@@ -41,41 +42,18 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void drawBall(int x, int y, int r, int g, int b);
-	void drawPallet(int x, int y, int r, int g, int b);
-	void drawWinner(int x, int y);
-	int screenLimitX(int x, int vx);
-	int screenLimitY(int y, int vy);
-	bool collisionTestPalett(int x, int y, int a, int b);
-	bool collisionTestWall(int x, int y, int a);
-	void drawPixel5(int x, int y, int r, int g, int b);
-	void showScore(int x, int y, int s, int r, int g, int b);
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Title tit;
 	Timer time;
 	Player play1,play2;
 	Ball bll;
 	Board brd;
 	GigaPixel gpx;
-	int ballX = 400;
-	int ballY = 200;
-	int ballVX = 0;
-	int ballVY = 0;
-	int pallet1X = 100;
-	int pallet1Y = 300;
-	int pallet2X = 700;
-	int pallet2Y = 300;
-	int r = 255;
-	int g = 255;
-	int b = 255;
-	bool inhibit = false;
-	bool collisionWall = false;
-	bool collisionPalett = false;
-	int score1 = 0;
-	int score2 = 0;
+
 	/********************************/
 };
