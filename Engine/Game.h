@@ -29,6 +29,7 @@
 #include "GigaPixel.h"
 #include "Timer.h"
 #include "Title.h"
+#include "Vec2.h"
 
 class Game
 {

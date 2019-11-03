@@ -1,9 +1,8 @@
 #include "Ball.h"
 
-Ball::Ball(int x, int y, int dim, Color c)
+Ball::Ball(Vec2& loc_init, int dim, Color c)
 	:
-	x(x),
-	y(y),
+	loc(loc_init),
 	c(c),
 	dim(dim)
 {
@@ -12,9 +11,9 @@ Ball::Ball(int x, int y, int dim, Color c)
 
 void Ball::drawBall(Graphics& gfx)
 {
-	for (int int_y = y; int_y < y + dim; ++int_y)
+	for (int int_y = loc.y; int_y < loc.y + dim; ++int_y)
 	{
-		for (int int_x = x; int_x < x + dim; ++int_x)
+		for (int int_x = loc.x; int_x < loc.x + dim; ++int_x)
 		{
 			gfx.PutPixel(int_x, int_y, c);
 		}
@@ -24,20 +23,20 @@ void Ball::drawBall(Graphics& gfx)
 void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 {
 	//Ball Hitbox
-	const int left_box0 = x;
-	const int right_box0 = x + dim;
-	const int top_box0 = y;
-	const int bottom_box0 = y + dim;
+	const int left_box0 = loc.x;
+	const int right_box0 = loc.x + dim;
+	const int top_box0 = loc.y;
+	const int bottom_box0 = loc.y + dim;
 	//Player1 Hitbox
-	const int left_box1 = play1.getX();
-	const int right_box1 = play1.getX() + play1.getWidth();
-	const int top_box1 = play1.getY();
-	const int bottom_box1 = play1.getY() + play1.getHeight();
+	const int left_box1 = play1.getPos().x;
+	const int right_box1 = play1.getPos().x + play1.getWidth()+5;
+	const int top_box1 = play1.getPos().y;
+	const int bottom_box1 = play1.getPos().y + play1.getHeight()+5;
 	//Player2 Hitbox
-	const int left_box2 = play2.getX();
-	const int right_box2 = play2.getX() + play2.getWidth();
-	const int top_box2 = play2.getY();
-	const int bottom_box2 = play2.getY() + play2.getHeight();
+	const int left_box2 = play2.getPos().x;
+	const int right_box2 = play2.getPos().x + play2.getWidth()+5;
+	const int top_box2 = play2.getPos().y;
+	const int bottom_box2 = play2.getPos().y + play2.getHeight()+5;
 	//Colision Check
 	if ((left_box0 <= right_box1 &&
 		right_box0 >= left_box1 &&
@@ -50,8 +49,8 @@ void Ball::collisionBall(Player& play1, Player& play2, Graphics& gfx)
 			bottom_box0 >= top_box2))
 	{
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		vx = -vx;
-		if (x > 400)
+		vel.x = -vel.x;
+		if (loc.x > 400)
 		{
 			c = play2.getColor();
 		}
@@ -67,45 +66,45 @@ void Ball::ballScript(Graphics& gfx, Board& brd, float dt)
 	//Ball wall limits an behaviours
 	//
 	//Up Wall
-	if (y - 15 <= 0)
+	if (loc.y - 15 <= 0)
 	{
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		y = 16;
-		vy = -vy;
+		loc.y = 16;
+		vel.y = -vel.y;
 	}
 	//Down Wall
-	if (y + 15 + dim >= gfx.ScreenHeight)
+	if (loc.y + 15 + dim >= gfx.ScreenHeight)
 	{
 		PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		y = gfx.ScreenHeight - 16 - dim;
-		vy = -vy;
+		loc.y = gfx.ScreenHeight - 16 - dim;
+		vel.y = -vel.y;
 	}
 	//Right Wall
-	if (x + 15 + dim >= gfx.ScreenWidth)
+	if (loc.x + 15 + dim >= gfx.ScreenWidth)
 	{
 		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		x = gfx.ScreenWidth - 16 - dim;
+		loc.x = gfx.ScreenWidth - 16 - dim;
 		ballLost();
 	}
 	//Left Wall
-	if (x - 15 <= 0)
+	if (loc.x - 15 <= 0)
 	{
 		PlaySound(TEXT("hurt.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		x = 16;
+		loc.x = 16;
 		ballLost();
 	}
 	//Ball movement
-	x += vx*dt;
-	y += vy*dt;
+	loc.x += vel.x*dt;
+	loc.y += vel.y*dt;
 }
 
 void Ball::ballLost()
 {
 	c = Colors::White;
-	x = 395;
-	y = 200;
-	vx = 0;
-	vy = 0;
+	loc.x = 395;
+	loc.y = 200;
+	vel.x = 0;
+	vel.y = 0;
 	isStarted = false;
 }
 
@@ -129,13 +128,13 @@ void Ball::startBall(MainWindow& wnd)
 			isStarted = true;
 			if (whoStarts == 0)
 			{
-				vx = -velocity;
-				vy = velocity;
+				vel.x = -velocity;
+				vel.y = velocity;
 			}
 			else if (whoStarts == 1)
 			{
-				vx = velocity;
-				vy = velocity;
+				vel.x = velocity;
+				vel.y = velocity;
 			}
 		}
 	}

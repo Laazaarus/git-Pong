@@ -5,13 +5,14 @@
 #include "Player.h"
 #include "Board.h"
 #include "MainWindow.h"
+#include "Vec2.h"
 #include <random>
 
 
 class Ball
 {
 public:
-	Ball(int x, int y, int dim, Color c);
+	Ball(Vec2& loc_init, int dim, Color c);
 	void drawBall(Graphics& gfx);
 	void collisionBall(Player& play1, Player& play2, Graphics& gfx);
 	void ballScript(Graphics& gfx, Board& brd, float dt);
@@ -22,14 +23,12 @@ private:
 	//
 
 	//
-	int x;
-	int y;
-	int vx = 0;
-	int vy = 0;
+	Vec2 loc;
+	Vec2 vel = { 0,0 };
 	int time = 60;
 	int speed = 7;
 	int velocity = time * speed;
-	int dim;
+	short int dim;
 	bool isStarted = false;
 	Color c;
 };
